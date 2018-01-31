@@ -60,7 +60,31 @@
                 <div>
                     <ui:insert name="menu-begin"/>
                     <section class="sidebar">
-                        <ui:insert name="menu"/>
+                        <ul class="sidebar-menu">
+
+                            <li class="header text-center">
+                                <div class="pull-left image">
+                                    <p:graphicImage value="resources/images/eptcLogo.png" />
+                                </div>
+                                <br/>
+                                Empresa Pública de<br/> Transporte e Circulação
+                            </li>
+                            <li>
+                                <p:link href="/index.xhtml" onclick="clearBreadCrumbs()">
+                                    <i class="fa fa-home"></i>
+                                    <span>Home</span>
+                                </p:link>
+                            </li>
+                            <li class="header">
+                                General
+                            </li>
+                            <li>
+                                <p:link href="/car-list.xhtml">
+                                    <i class="fa fa-car"></i>
+                                    <span>Cars</span>
+                                </p:link>
+                            </li>
+                        </ul>
                     </section>
                     <ui:insert name="menu-end"/>
                 </div>
@@ -73,7 +97,8 @@
                         <ui:insert name="title"/>
                         <small><ui:insert name="description"/></small>
                     </h1>
-                    <ui:fragment rendered="#{(adminConfig.renderBreadCrumb) and (empty renderBreadCrumb or renderBreadCrumb eq 'true') }">
+                    <ui:fragment
+                            rendered="#{(adminConfig.renderBreadCrumb) and (empty renderBreadCrumb or renderBreadCrumb eq 'true') }">
                         <ol class="breadcrumb" style="overflow: hidden;">
                             <li style="position: relative;">
                                 <p:link href="/" onclick="clearBreadCrumbs();" style="position: relative;">
@@ -86,7 +111,8 @@
                                     <h:panelGroup rendered="#{status.last}">
                                         #{b.title}
                                     </h:panelGroup>
-                                    <p:link href="#{b.link}" rendered="#{not status.last}" style="color: #3C8DBC;position: relative">
+                                    <p:link href="#{b.link}" rendered="#{not status.last}"
+                                            style="color: #3C8DBC;position: relative">
                                         #{b.title}
                                     </p:link>
                                 </li>
@@ -136,7 +162,7 @@
             }
         </script>
 
-        <!--<adm:ripple/>-->
+        <adm:ripple/>
 
         <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
         <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
@@ -145,7 +171,8 @@
         <!-- slide in/out menu integration  -->
         <h:outputScript library="js" name="slideout.min.js" target="head" rendered="#{adminConfig.enableSlideMenu}"/>
         <h:outputScript library="js" name="adminslide.js" target="head" rendered="#{adminConfig.enableSlideMenu}"/>
-        <ui:fragment rendered="#{not adminConfig.enableSlideMenu or (not empty enableSlideMenu and enableSlideMenu eq 'false')}">
+        <ui:fragment
+                rendered="#{not adminConfig.enableSlideMenu or (not empty enableSlideMenu and enableSlideMenu eq 'false')}">
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.slideout-menu').removeClass('slideout-menu');
@@ -165,7 +192,7 @@
                                 activateAutoShowNavbarOnScrollUp();   // fire immediately on first scroll
                                 lastScrollFireTimeNav = now;
                             }
-                            scrollTimerNav = setTimeout(function() {
+                            scrollTimerNav = setTimeout(function () {
                                 scrollTimerNav = null;
                                 lastScrollFireTimeNav = new Date().getTime();
                                 activateAutoShowNavbarOnScrollUp();
