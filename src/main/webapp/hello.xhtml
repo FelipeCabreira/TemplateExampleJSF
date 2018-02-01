@@ -4,58 +4,17 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/admin.xhtml"> (1)
 
-    <ui:define name="head">
-        <title>Admin Starter</title>
-    </ui:define>
+    <ui:define name="titulo_aba">Início</ui:define>
 
-    <ui:define name="logo-lg">
-        Admin Starter
-    </ui:define>
+    <ui:define name="titulo_pagina">Consulta de Usuários</ui:define>
 
-    <ui:define name="logo-mini">
-        Admin
-    </ui:define>
-
-    <!--<ui:define name="menu">-->
-
-     <!--</ui:define>-->
-    <!--
-    <ui:define name="top-menu">
-        <ui:include src="/includes/top-bar.xhtml"/>
-    </ui:define>
-    -->
-      <ui:define name="title">
-        <h2 class="align-center">
-            Welcome to the <span class="text-aqua"> <i><a href="https://github.com/adminfaces/admin-starter" target="_blank"
-                                                          style="text-transform: none;text-decoration: none"> AdminFaces Starter</a></i></span> Project!
-            <br/>
-            <small>Integrating <p:link value="Primefaces" href="http://primefaces.org"/>, <p:link value="Bootstrap"
-                                                                                                  href="http://getbootstrap.com/"/> and
-                <p:link value="Admin LTE" href="https://almsaeedstudio.com/themes/AdminLTE/index2.html/"/> into your
-                <p:link value="JSF" href="https://javaserverfaces.java.net/"/> application.
-            </small>
-        </h2>
-    </ui:define>
-
-    <ui:define name="description">
-        A page description
+    <ui:define name="mapa_sistema">
+        <li><p:link href="usuarios" onclick="clearBreadCrumbs();" style="position: relative;">Usuários</p:link></li>
+        <li class="active">Consulta de Usuários</li>
     </ui:define>
 
     <ui:define name="body">
-    	<h2>Page body</h2>
+        <h2>Page body</h2>
     </ui:define>
-
-
-    <ui:define name="footer">
-          <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
-        </a>
-
-        <div class="pull-right hidden-xs" style="color: gray">
-            <i>1.0.0</i>
-        </div>
-    </ui:define>
-
 
 </ui:composition>
