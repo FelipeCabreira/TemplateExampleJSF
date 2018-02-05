@@ -96,7 +96,19 @@
 			<artifactId>primefaces-extensions</artifactId>
 			<version>6.1.1</version>
 			<scope>compile</scope>
-	  </dependency>
+		</dependency>
+
+		<!-- PrettyFaces (remvoe extensão *.xhtml da URL -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>3.4.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+			<version>3.4.1.Final</version>
+		</dependency>
 
 	</dependencies>
 
