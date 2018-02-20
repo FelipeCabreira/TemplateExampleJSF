@@ -1,4 +1,4 @@
-package util;
+package com.templatejsf.util;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

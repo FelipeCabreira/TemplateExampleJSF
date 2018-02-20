@@ -8,4 +8,9 @@
 		<view-id value="/index.xhtml" />
 	</url-mapping>
 
+	<url-mapping id="forms">
+		<pattern value="/forms" />
+		<view-id value="/forms.xhtml" />
+	</url-mapping>
+
 </pretty-config>
