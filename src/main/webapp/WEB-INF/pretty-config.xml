@@ -13,4 +13,9 @@
 		<view-id value="/forms.xhtml" />
 	</url-mapping>
 
+	<url-mapping id="lista">
+		<pattern value="/lista" />
+		<view-id value="/lista.xhtml" />
+	</url-mapping>
+
 </pretty-config>

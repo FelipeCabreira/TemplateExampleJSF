@@ -2,7 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/admin.xhtml"> (1)
+                template="/base.xhtml"> (1)
 
     <ui:define name="titulo_aba">Início</ui:define>
 
@@ -16,7 +16,7 @@
     <ui:define name="body">
         <h2>Page body</h2>
 
-        <div>#{helloBean.name}</div>
+        <div>#{carroBean.name}</div>
     </ui:define>
 
 </ui:composition>
