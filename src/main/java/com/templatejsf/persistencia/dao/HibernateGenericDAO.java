@@ -39,7 +39,7 @@ public class HibernateGenericDAO<T> {
     */
 
 //    @Transactional
-    public List<T> selectAll() {
+    public List selectAll() {
         Session session = null;
 //        Transaction transaction = null;
         try {
@@ -50,7 +50,7 @@ public class HibernateGenericDAO<T> {
             if (queryList != null && queryList.isEmpty()) {
                 return null;
             } else {
-                return (List<T>) queryList;
+                return queryList;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

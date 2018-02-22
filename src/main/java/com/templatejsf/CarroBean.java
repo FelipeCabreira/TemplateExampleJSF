@@ -18,20 +18,6 @@ public class CarroBean implements Serializable {
 	private List listaCarros;
 	private Car carroSelecionado;
 
-	public String getName() {
-		CarDAO carDAO = new CarDAO();
-		List<Car> listaCars = carDAO.selectAll();
-
-		System.out.println("TAM LISTA: " + listaCars.size());
-
-		for (Car car : listaCars) {
-			System.out.println(car.getId() + ", " + car.getName() + ", " + car.getModel() + ", " + car.getPrice());
-//			System.out.println(car.getId() + " - " + car.getDescricaomenu());
-		}
-
-		return "Allan";
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:adm="http://github.com/adminfaces"
@@ -65,11 +64,22 @@
                     <p:separator/>
 
                     <!--TABELA-->
-                    <p:dataTable var="car" value="#{carroBean.listaCarros}" paginator="true"
+                    <!--<p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
                                  paginatorPosition="bottom"
-                                 selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}" rows="5">
+                                 selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}"
+                                 styleClass="box-primary" lazy="false"
+                                 rowsPerPageTemplate="5,10,15" rows="5"
+                                 emptyMessage="No cars found with given criteria"
+                    >-->
 
-                        <p:column selectionMode="multiple" style="width: 42px"
+                    <p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
+                                 paginatorPosition="bottom"
+                                 selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}" rows="5"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="Mostrando {startRecord} a {endRecord} de {totalRecords} registros"
+                                 rowsPerPageTemplate="5,10,15,20,30">
+
+                        <p:column selectionMode="single" style="width: 42px"
                                   styleClass="align-center"
                                   priority="1"/>
 
