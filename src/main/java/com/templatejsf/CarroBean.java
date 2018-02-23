@@ -14,13 +14,8 @@ public class CarroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String name;
 	private List listaCarros;
 	private Car carroSelecionado;
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public List getListaCarros(){
 		return new CarDAO().selectAll();
@@ -32,6 +27,13 @@ public class CarroBean implements Serializable {
 
 	public void setCarroSelecionado(Car carroSelecionado) {
 		this.carroSelecionado = carroSelecionado;
+	}
+
+	public void deletar() {
+	    if(getCarroSelecionado() == null)
+            System.out.println("NULL");
+	    else
+		    System.out.println(getCarroSelecionado().getName());
 	}
 
 }

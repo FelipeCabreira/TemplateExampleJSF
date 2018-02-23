@@ -3,7 +3,6 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:adm="http://github.com/adminfaces"
                 template="/base.xhtml"> (1)
 
     <ui:define name="titulo_aba">Início</ui:define>
@@ -16,98 +15,89 @@
     </ui:define>
 
     <ui:define name="body">
-        <adm:breadcrumb title="Car list"/>
 
-        <h:form>
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton action="car-form?faces-redirect=true" icon="fa fa-plus"
-                                         value="New" styleClass="btn-primary"/>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <div id="main-buttons" class="hidden-sm hidden-xs">
+                    <h:form>
+                        <p:commandButton action="car-form?faces-redirect=true" icon="fa fa-plus" value="Novo" styleClass="btn-primary"/>
+
                         <p:spacer width="5"/>
 
-                        <p:commandButton value="Delete Selected" icon="fa fa-trash" styleClass="btn-danger"
-                                         action="#{carListMB.delete}"
-                                         disabled="#{empty carListMB.selectionList or carListMB.selectionList.size() == 0}"
-                                         process="@this" update="@form"
-                        >
-                            <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-danger"/>
+                        <p:commandButton value="Deletar Selecionado" icon="fa fa-trash" styleClass="btn-danger" action="#{carroBean.deletar}">
+                            <p:confirm header="Deletar Registro" message="#{msgPadrao.confirmaDeletar}" icon="ui-icon-danger" />
                         </p:commandButton>
-                        <p:spacer width="5"/>
-                        <p:commandButton value="Search" update="@(.ui-dialog)" styleClass="btn-info"
-                                         oncomplete="PF('searchDialog').show()" icon="fa fa-search"/>
 
                         <p:spacer width="5"/>
-                        <p:commandButton value="Clear" update="@(.ui-dialog, .ui-datatable)" process="@form"
-                                         action="#{carroBean.clear}"
-                                         icon="fa fa-refresh"/>
-                    </div>
 
-                    <p:splitButton value="New" action="car-form?faces-redirect=true"
-                                   icon="fa fa-plus"
-                                   styleClass="hidden-md hidden-lg btn-primary">
-                        <p:menuitem value="Delete Selected" action="#{carListMB.delete}"
-                                    process="@this" update="@form"
-                                    disabled="#{empty carListMB.selectionList or carListMB.selectionList.size() == 0}"
-                                    icon="fa fa-trash">
-                            <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-danger"/>
-                        </p:menuitem>
-                        <p:menuitem value="Search" update="@(.ui-dialog)"
-                                    oncomplete="PF('searchDialog').show()"
-                                    icon="fa fa-search"/>
+                        <p:commandButton value="Pesquisar" update="@(.ui-dialog)" styleClass="btn-info" oncomplete="PF('searchDialog').show()" icon="fa fa-search"/>
 
-                        <p:menuitem value="Clear" update="@(.ui-dialog, .ui-datatable)" process="@form"
-                                    action="#{carroBean.clear}"
-                                    icon="fa fa-refresh"/>
-                    </p:splitButton>
+                        <p:spacer width="5"/>
 
-                    <p:separator/>
-
-                    <!--TABELA-->
-                    <!--<p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
-                                 paginatorPosition="bottom"
-                                 selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}"
-                                 styleClass="box-primary" lazy="false"
-                                 rowsPerPageTemplate="5,10,15" rows="5"
-                                 emptyMessage="No cars found with given criteria"
-                    >-->
-
-                    <p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
-                                 paginatorPosition="bottom"
-                                 selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}" rows="5"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 currentPageReportTemplate="Mostrando {startRecord} a {endRecord} de {totalRecords} registros"
-                                 rowsPerPageTemplate="5,10,15,20,30">
-
-                        <p:column selectionMode="single" style="width: 42px"
-                                  styleClass="align-center"
-                                  priority="1"/>
-
-                        <p:column headerText="Id" sortBy="#{car.id}" styleClass="align-center">
-                            <h:outputText value="#{car.id}" priority="1"/>
-                        </p:column>
-                        <p:column headerText="Year" styleClass="align-center">
-                            <h:outputText value="#{car.name}" priority="2"/>
-                        </p:column>
-                        <p:column headerText="Brand" styleClass="align-center">
-                            <h:outputText value="#{car.model}"/>
-                        </p:column>
-                        <p:column headerText="Color" styleClass="align-center">
-                            <h:outputText value="#{car.price}"/>
-                        </p:column>
-                    </p:dataTable>
-                    <!--TABELA FIM -->
-
+                        <p:commandButton value="Limpar Seleção" update="@(.ui-dialog, .ui-datatable)" action="#{carListMB.clear}" icon="fa fa-refresh"/>
+                    </h:form>
                 </div>
-            </div>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger">
-                <p:commandButton value="Yes" type="button" styleClass="btn-primary ui-confirmdialog-yes"
-                                 icon="fa fa-check"/>
-                <p:commandButton value="No" type="button" styleClass="btn-danger ui-confirmdialog-no"
-                                 icon="fa fa-close"/>
-            </p:confirmDialog>
-        </h:form>
 
+                <!--
+                <p:splitButton value="New" action="car-form?faces-redirect=true"
+                               icon="fa fa-plus"
+                               styleClass="hidden-md hidden-lg btn-primary">
+                    <p:menuitem value="Delete Selected" action="#{carListMB.delete}"
+                                process="@this" update="@form"
+                                disabled="#{empty carListMB.selectionList or carListMB.selectionList.size() == 0}"
+                                icon="fa fa-trash">
+                        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-danger"/>
+                    </p:menuitem>
+                    <p:menuitem value="Search" update="@(.ui-dialog)"
+                                oncomplete="PF('searchDialog').show()"
+                                icon="fa fa-search"/>
+
+                    <p:menuitem value="Clear" update="@(.ui-dialog, .ui-datatable)" process="@form"
+                                action="#{carListMB.clear}"
+                                icon="fa fa-refresh"/>
+                </p:splitButton>
+                -->
+
+                <p:separator/>
+
+                <!--Dialogo Global-->
+                <h:form>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-warning">
+                        <p:commandButton value="Sim" type="button" styleClass="btn-primary ui-confirmdialog-yes" icon="fa fa-check"/>
+                        <p:commandButton value="Não" type="button" styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-close"/>
+                    </p:confirmDialog>
+                </h:form>
+                <!--FIM Dialogo Global-->
+
+                <!--TABELA-->
+                <p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
+                             paginatorPosition="bottom"
+                             selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}" rows="5"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="Mostrando {startRecord} a {endRecord} de {totalRecords} registros"
+                             rowsPerPageTemplate="5,10,15,20,30">
+
+                    <p:column selectionMode="single" style="width: 42px"
+                              styleClass="align-center"
+                              priority="1"/>
+
+                    <p:column headerText="Id" sortBy="#{car.id}" styleClass="align-center">
+                        <h:outputText value="#{car.id}" priority="1"/>
+                    </p:column>
+                    <p:column headerText="Year" styleClass="align-center">
+                        <h:outputText value="#{car.name}" priority="2"/>
+                    </p:column>
+                    <p:column headerText="Brand" styleClass="align-center">
+                        <h:outputText value="#{car.model}"/>
+                    </p:column>
+                    <p:column headerText="Color" styleClass="align-center">
+                        <h:outputText value="#{car.price}"/>
+                    </p:column>
+                </p:dataTable>
+                <!--TABELA FIM -->
+
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>
