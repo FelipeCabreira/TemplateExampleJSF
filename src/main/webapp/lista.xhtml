@@ -24,7 +24,7 @@
 
                         <p:spacer width="5"/>
 
-                        <p:commandButton value="Deletar Selecionado" icon="fa fa-trash" styleClass="btn-danger" action="#{carroBean.deletar}">
+                        <p:commandButton value="Deletar Selecionado" icon="fa fa-trash" styleClass="btn-danger" action="#{carroBean.deletar}" disabled="#{empty carroBean.carroSelecionado}">
                             <p:confirm header="Deletar Registro" message="#{msgPadrao.confirmaDeletar}" icon="ui-icon-danger" />
                         </p:commandButton>
 
@@ -73,6 +73,11 @@
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="Mostrando {startRecord} a {endRecord} de {totalRecords} registros"
                              rowsPerPageTemplate="5,10,15,20,30">
+
+                    <p:ajax event="rowSelectRadio" update="@(.ui-button, .ui-confirm-dialog)"/>
+                    <p:ajax event="rowUnselectCheckbox" update="@(.ui-button, .ui-confirm-dialog)"/>
+                    <p:ajax event="rowSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
+                    <p:ajax event="rowUnselect" update="@(.ui-button, .ui-confirm-dialog)"/>
 
                     <p:column selectionMode="single" style="width: 42px"
                               styleClass="align-center"
