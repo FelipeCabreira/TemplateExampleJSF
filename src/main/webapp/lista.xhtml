@@ -33,9 +33,6 @@
 
                         <p:commandButton value="Pesquisar" update="@(.ui-dialog)" styleClass="btn-info" oncomplete="PF('searchDialog').show()" icon="fa fa-search"/>
 
-                        <p:spacer width="5"/>
-
-                        <p:commandButton value="Limpar Seleção" update="@(.ui-dialog, .ui-datatable)" action="#{carListMB.clear}" icon="fa fa-refresh"/>
                 </div>
 
                 <p:separator/>
@@ -48,8 +45,7 @@
                 <!--FIM Dialogo Global-->
 
                 <!--TABELA-->
-                <p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true"
-                             paginatorPosition="bottom"
+                <p:dataTable id="radioDT" var="car" value="#{carroBean.listaCarros}" paginator="true" paginatorPosition="bottom"
                              selection="#{carroBean.carroSelecionado}" rowKey="#{car.id}" rows="5"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              currentPageReportTemplate="Mostrando {startRecord} a {endRecord} de {totalRecords} registros"
@@ -67,13 +63,13 @@
                     <p:column headerText="Id" sortBy="#{car.id}" styleClass="align-center">
                         <h:outputText value="#{car.id}" priority="1"/>
                     </p:column>
-                    <p:column headerText="Year" styleClass="align-center">
+                    <p:column headerText="Year" sortBy="#{car.name}" styleClass="align-center">
                         <h:outputText value="#{car.name}" priority="2"/>
                     </p:column>
-                    <p:column headerText="Brand" styleClass="align-center">
+                    <p:column headerText="Brand" sortBy="#{car.model}"  styleClass="align-center">
                         <h:outputText value="#{car.model}"/>
                     </p:column>
-                    <p:column headerText="Color" styleClass="align-center">
+                    <p:column headerText="Color" sortBy="#{car.price}"  styleClass="align-center">
                         <h:outputText value="#{car.price}"/>
                     </p:column>
                 </p:dataTable>
