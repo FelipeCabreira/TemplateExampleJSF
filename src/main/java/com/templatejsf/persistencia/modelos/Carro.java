@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "car")
-public class Car {
+public class Carro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +29,10 @@ public class Car {
     @Version
     private Integer version;
 
-    public Car() {
+    public Carro() {
     }
 
-    public Car(Integer id) {
+    public Carro(Integer id) {
         this.id = id;
     }
 
@@ -72,17 +72,17 @@ public class Car {
         this.version = version;
     }
 
-    public Car model(String model) {
+    public Carro model(String model) {
         this.model = model;
         return this;
     }
 
-    public Car price(Double price) {
+    public Carro price(Double price) {
         this.price = price;
         return this;
     }
 
-    public Car name(String name) {
+    public Carro name(String name) {
         this.name = name;
         return this;
     }
