@@ -24,7 +24,8 @@
 
                         <p:spacer width="5"/>
 
-                        <p:commandButton value="Deletar Selecionado" icon="fa fa-trash" styleClass="btn-danger" action="#{carroBean.deletar}" disabled="#{empty carroBean.carroSelecionado}">
+                        <p:commandButton value="Deletar Selecionado" icon="fa fa-trash" styleClass="btn-danger"
+                                         actionListener="#{carroBean.deletar}" disabled="#{carroBean.nadaSelecionado}">
                             <p:confirm header="Deletar Registro" message="#{msgPadrao.confirmaDeletar}" icon="ui-icon-danger" />
                         </p:commandButton>
 
@@ -36,26 +37,6 @@
 
                         <p:commandButton value="Limpar Seleção" update="@(.ui-dialog, .ui-datatable)" action="#{carListMB.clear}" icon="fa fa-refresh"/>
                 </div>
-
-                <!--
-                <p:splitButton value="New" action="car-form?faces-redirect=true"
-                               icon="fa fa-plus"
-                               styleClass="hidden-md hidden-lg btn-primary">
-                    <p:menuitem value="Delete Selected" action="#{carListMB.delete}"
-                                process="@this" update="@form"
-                                disabled="#{empty carListMB.selectionList or carListMB.selectionList.size() == 0}"
-                                icon="fa fa-trash">
-                        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-danger"/>
-                    </p:menuitem>
-                    <p:menuitem value="Search" update="@(.ui-dialog)"
-                                oncomplete="PF('searchDialog').show()"
-                                icon="fa fa-search"/>
-
-                    <p:menuitem value="Clear" update="@(.ui-dialog, .ui-datatable)" process="@form"
-                                action="#{carListMB.clear}"
-                                icon="fa fa-refresh"/>
-                </p:splitButton>
-                -->
 
                 <p:separator/>
 

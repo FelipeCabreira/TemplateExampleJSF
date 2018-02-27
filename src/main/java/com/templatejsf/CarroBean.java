@@ -2,9 +2,9 @@ package com.templatejsf;
 
 import com.templatejsf.persistencia.dao.CarDAO;
 import com.templatejsf.persistencia.modelos.Car;
-import org.omnifaces.cdi.ViewScoped;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,9 +13,8 @@ import java.util.List;
 public class CarroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private List listaCarros;
 	private Car carroSelecionado;
+	private boolean nadaSelecionado = true;
 
 	public List getListaCarros(){
 		return new CarDAO().selectAll();
@@ -26,6 +25,8 @@ public class CarroBean implements Serializable {
 	}
 
 	public void setCarroSelecionado(Car carroSelecionado) {
+		System.out.println("SELECIONOU");
+		nadaSelecionado = false;
 		this.carroSelecionado = carroSelecionado;
 	}
 
@@ -36,4 +37,7 @@ public class CarroBean implements Serializable {
 		    System.out.println(getCarroSelecionado().getName());
 	}
 
+	public boolean isNadaSelecionado() {
+		return nadaSelecionado;
+	}
 }
