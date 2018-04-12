@@ -8,10 +8,8 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-/**
- * Created by Allan Moreira on 26/01/2016.
- */
-//@Repository
+
+@SuppressWarnings("unchecked")
 public class HibernateGenericDAO<T> {
 
     private Class<T> classeDAO;
@@ -65,7 +63,7 @@ public class HibernateGenericDAO<T> {
         Session session = null;
         Transaction transaction = null;
         try {
-//            session =
+            session = HibernateConnectionFactory.getInstance();
             transaction = session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
@@ -75,29 +73,30 @@ public class HibernateGenericDAO<T> {
             }
             e.printStackTrace();
         } finally {
-            session.flush();
-            session.close();
+            if(session!= null && session.isOpen())
+                session.close();
         }
     }
 
-    public void delete(int id) {
+    public void delete(T entity) {
         Session session = null;
         Transaction transaction = null;
-//        try {
+        try {
             session = HibernateConnectionFactory.getInstance();
             transaction = session.beginTransaction();
-            T t = (T) session.load(classeDAO.getName(), id);
-            session.delete(t);
+            session.delete(entity);
             session.getTransaction().commit();
-//        } catch (RuntimeException e) {
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-//            e.printStackTrace();
-//        } finally {
-            session.flush();
-            session.close();
-//        }
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if(session!= null && session.isOpen())
+                session.close();
+        }
+
     }
 
     public void update(T entity) {
@@ -119,17 +118,17 @@ public class HibernateGenericDAO<T> {
         }
     }
 
-    /*
     public T selectById(int id) {
+        T entity = null;
         Session session = null;
         Transaction transaction = null;
         try {
-            session = service.HibernateConnectionFactory.create();
+            session = HibernateConnectionFactory.getInstance();
             transaction = session.beginTransaction();
-//            String queryString = "from CartaoCredito where id = :id";
-//            Query query = session.createQuery(queryString);
+            String queryString = "FROM " + classeDAO.getName() + " WHERE id = :id";
+            Query query = session.createQuery(queryString);
             query.setInteger("id", id);
-            T entity = (T) query.uniqueResult();
+            entity = (T) query.uniqueResult();
         } catch (RuntimeException e) {
             e.printStackTrace();
         } finally {
@@ -138,7 +137,6 @@ public class HibernateGenericDAO<T> {
         }
         return entity;
     }
-    */
 
     /*/////////////////////////////////////////////////////*/
     public Object salvarBKP(Object o) {

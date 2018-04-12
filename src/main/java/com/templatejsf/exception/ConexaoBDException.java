@@ -1,8 +1,6 @@
 package com.templatejsf.exception;
 
-/**
- * Created by allanmoreira on 30/12/16.
- */
+
 public class ConexaoBDException extends Exception {
 
     public ConexaoBDException() {

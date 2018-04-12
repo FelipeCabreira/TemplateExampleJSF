@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "car")
-public class Carro {
+public class Carro implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,6 @@ public class Carro {
 
     @Column(name = "price")
     private Double price;
-
-    @Version
-    private Integer version;
 
     public Carro() {
     }
@@ -62,14 +59,6 @@ public class Carro {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public Carro model(String model) {

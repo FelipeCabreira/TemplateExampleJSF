@@ -103,16 +103,7 @@
                 <section class="content">
                     <ui:insert name="content-begin"/>
                     <ui:fragment rendered="#{adminConfig.renderMessages}">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p:messages id="messages" closable="true" globalOnly="true" autoUpdate="true"
-                                            showDetail="true" severity="error,fatal" escape="false"/>
-                                <!-- we need two messages because info-messages are hidden by javascript  -->
-                                <p:messages id="info-messages" closable="true" autoUpdate="true" showDetail="true"
-                                            severity="info,warn" escape="false"/>
-                                <p:tooltip/> <!-- exception messages with type tooltip -->
-                            </div>
-                        </div>
+                        <p:growl autoUpdate="true" showDetail="true" life="3000" severity="info"/>
                     </ui:fragment>
 
                     <ui:insert name="body"/>

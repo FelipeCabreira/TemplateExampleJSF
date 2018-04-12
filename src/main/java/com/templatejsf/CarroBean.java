@@ -2,12 +2,16 @@ package com.templatejsf;
 
 import com.templatejsf.persistencia.dao.CarroDAO;
 import com.templatejsf.persistencia.modelos.Carro;
+import org.omnifaces.util.Messages;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -18,9 +22,8 @@ public class CarroBean implements Serializable {
 	private Carro carroSelecionado;
 	private boolean nadaSelecionado = true;
 	private List<Carro> listaCarros;
-
-	@Inject
-	private CarroDAO carroDAO;
+//	@Inject
+	private CarroDAO carroDAO = new CarroDAO();
 
 	@PostConstruct
 	public void inicializa(){
@@ -40,24 +43,23 @@ public class CarroBean implements Serializable {
 	}
 
 	public void setCarroSelecionado(Carro carroSelecionado) {
-		System.out.println("SELECIONOU");
 		nadaSelecionado = false;
 		this.carroSelecionado = carroSelecionado;
 	}
 
 	public void deletar() {
-//	    if(getCarroSelecionado() == null)
-//            System.out.println("NULL");
-//	    else
-//		    System.out.println(getCarroSelecionado().getName());
-		System.out.println("ANTES: " + listaCarros.size());
+		Carro carro = carroDAO.selectById(carroSelecionado.getId());
+        carroDAO.delete(carro);
+
 		for (int i = 0; i < listaCarros.size(); i++) {
-			 if(listaCarros.get(i).getId() == getCarroSelecionado().getId()) {
-				 listaCarros.remove(i);
-				 break;
+			 if(listaCarros.get(i).getId() == carro.getId()){
+			 	listaCarros.remove(i);
+			 	break;
 			 }
 		}
-		System.out.println("DEPOIS: " + listaCarros.size());
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successful",  "Your message: " + "Teste de mensagem") );
+
 	}
 
 	public boolean isNadaSelecionado() {

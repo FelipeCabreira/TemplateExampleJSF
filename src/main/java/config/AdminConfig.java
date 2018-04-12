@@ -12,9 +12,7 @@ import java.util.logging.Logger;
 
 import static com.github.adminfaces.template.util.Assert.has;
 
-/**
- * Created by rafael-pestano on 22/11/16.
- */
+
 @Named
 @ApplicationScoped
 public class AdminConfig implements Serializable {
